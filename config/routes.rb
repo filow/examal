@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  controller :sessions do
+    get "login"=>'sessions#new'
+    post 'login' =>'sessions#create'
+    get 'logout'=>"sessions#destroy"
+  end
+
+
   get 'admin/index'
   get 'admin/' => 'admin#index'
   resources :teachers

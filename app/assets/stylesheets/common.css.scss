@@ -87,8 +87,7 @@ a:hover{
     @include border-radius(6px);
     box-shadow: 0 6px 19px #888888;
     text-align: left;
-
-    .login-box-header{
+    .login-header{
         background-color: #000;
 
         @include border-top-radius(6px);
@@ -107,7 +106,9 @@ a:hover{
             text-shadow: 0 1px 1px #000;    
         }
     }
+
 }
+    
 .login-form{
   margin:10px 20px 10px 20px;
 }
@@ -426,3 +427,5 @@ a:hover{
   border-color: red;
   input{border-color: red;}
 }
+
+.debug_dump{word-break: break-all;width: 100px;}

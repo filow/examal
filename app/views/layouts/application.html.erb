@@ -3,6 +3,9 @@
 <head>
   <title><%= yield :title %><%= SITE_NAME %>后台管理</title>
   <meta charset="UTF-8" />
+  <!-- 让ie浏览器使用最新的渲染引擎 -->
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 <!--     <link rel="stylesheet" href="__PUBLIC__/plugins/icheck/skins/square/blue.css">
     <link rel="stylesheet" href="__PUBLIC__/plugins/bootstrap-select/bootstrap-select.css">
@@ -22,7 +25,7 @@
             <button class="btn">123231</button>
             <%= link_to "账户管理",teachers_path,:class=>"btn" %>
             <%= link_to "回到前台","#",:class=>"btn" %>
-            <%= link_to "退出登录","#",:class=>"btn btn-warning" %>
+            <%= link_to "退出登录",logout_path,:class=>"btn btn-warning" %>
 		</div>
 	</div>
 </div>

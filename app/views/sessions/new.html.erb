@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>后台登录--<%= SITE_NAME %></title>
+	<!-- 让ie浏览器使用最新的渲染引擎 -->
+    <meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+</head>
+<body>
+	<div class="container">
+    <!--header-->
+		<div class="header">
+				<div class="header-logo">
+	                <%= link_to(image_tag("logo.png",id:"logo"),admin_path) %>
+	            </div>
+		</div>
+		<% if flash[:alert] %>
+			<div class="alert alert-alert login-alert">
+			<%= alert %>
+			<%= fa_icon "times",class:"removing-tag" %>
+			</div>
+		<% end %>
+		<div class="login-box center corner-all">
+			<div class="login-header"><span>用户登录</span></div>
+			<div class="login-body center">
+
+				<if condition="XS('fail_wait') gt 0"><else />
+				<%= form_tag "",name: "form",:class => "login-form",onSubmit: "return check()" do %>
+					<div><label for="name">用户名：</label></div>
+					<%= text_field_tag :name,params[:name],class: "login-input",placeholder: "请输入用户名","data-toggle"=> "popover",autofocus: true,title:"","data-content"=>"用户名不能为空" %>
+					<div class="login-label"><label for="password">密码：</label></div>
+					<%= password_field_tag :password,params[:password],class: "login-input",placeholder: "请输入密码","data-toggle"=> "popover",title:"","data-content"=>"密码不能为空" %>
+
+					<%= submit_tag "登录",:class => "btn btn-large login-button" %>
+				<% end %>
+				</if>
+			</div>
+		</div>
+		<div class="time-out"></div>
+	</div>
+</body>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<script>
+function check()
+{
+	var flag = true;
+	$("input").each(function(){
+		var value=$(this).val();
+		if(value=="")
+		{
+			$(this).css("border-color","red");
+			$(this).popover('show');
+			flag=false;
+		}
+	});
+	return flag;
+}
+
+$(document).ready(function(){
+	$(".removing-tag").click(function(){
+		$(".login-alert").fadeOut();
+	});	
+	$("input").focus(function(){
+		$(this).css("border-color","#8b969d");
+	});
+});
+</script>
+</html>
