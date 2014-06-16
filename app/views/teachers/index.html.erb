@@ -1,10 +1,11 @@
 <h3>教师列表</h3>
-
-<table>
+<table class="table">
   <thead>
     <tr>
+      <th>ID</th>
       <th>教师姓名</th>
       <th>是否为管理员</th>
+      <th>创建时间</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,11 +13,18 @@
   <tbody>
     <% @teachers.each do |teacher| %>
       <tr>
+        <td><%= teacher.id %></td>
         <td><%= teacher.name %></td>
-        <td><%= teacher.is_admin %></td>
-        <td><%= link_to 'Show', teacher %></td>
-        <td><%= link_to 'Edit', edit_teacher_path(teacher) %></td>
-        <td><%= link_to 'Destroy', teacher, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+        <% if teacher.is_admin? %>
+        <span class="label label-info">管理员</span>
+        <% else %>
+        <span class="label">普通教师</span>
+        <% end %>
+        </td>
+        <td><%= teacher.created_at.strftime("%Y-%m") %></td>
+        <td><%= link_to '编辑', edit_teacher_path(teacher),:class => "btn" %></td>
+        <td><%= link_to '删除', teacher, method: :delete, data: { confirm: '确定要删除这个教师帐号?' },:class => "btn btn-warning" %></td>
       </tr>
     <% end %>
   </tbody>

@@ -25,8 +25,6 @@
 		<div class="login-box center corner-all">
 			<div class="login-header"><span>用户登录</span></div>
 			<div class="login-body center">
-
-				<if condition="XS('fail_wait') gt 0"><else />
 				<%= form_tag "",name: "form",:class => "login-form",onSubmit: "return check()" do %>
 					<div><label for="name">用户名：</label></div>
 					<%= text_field_tag :name,params[:name],class: "login-input",placeholder: "请输入用户名","data-toggle"=> "popover",autofocus: true,title:"","data-content"=>"用户名不能为空" %>
@@ -35,7 +33,6 @@
 
 					<%= submit_tag "登录",:class => "btn btn-large login-button" %>
 				<% end %>
-				</if>
 			</div>
 		</div>
 		<div class="time-out"></div>

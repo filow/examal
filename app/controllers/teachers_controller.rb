@@ -1,38 +1,57 @@
 class TeachersController < BackyardController
   before_action :set_teacher, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_logged_teacher
   # GET /teachers
   # GET /teachers.json
   def index
-    @teachers = Teacher.all
+    if @logged_teacher.is_admin?
+      @teachers = Teacher.all
+    else
+      redirect_to edit_teacher_url(@logged_teacher)
+    end
   end
 
   # GET /teachers/1
-  # GET /teachers/1.json
   def show
+    if @logged_teacher.is_admin?
+      redirect_to teachers_url
+    else
+      redirect_to edit_teacher_path(@logged_teacher)
+    end
   end
 
   # GET /teachers/new
   def new
-    @teacher = Teacher.new
+    if @logged_teacher.is_admin?
+      @teacher = Teacher.new
+    else
+      redirect_to edit_teacher_path(@logged_teacher),notice: "抱歉，您没有新建教师账户的权限"
+    end
   end
 
   # GET /teachers/1/edit
   def edit
+    unless @logged_teacher.id==params[:id].to_i
+      unless @logged_teacher.is_admin?
+        redirect_to edit_teacher_path(@logged_teacher),notice:"您只能编辑你自己的信息"
+      end
+    end
   end
 
   # POST /teachers
   # POST /teachers.json
   def create
-    @teacher = Teacher.new(teacher_params)
+    unless @logged_teacher.is_admin?
+      redirect_to edit_teacher_path(@logged_teacher),notice:"抱歉，您没有新建教师账户的权限"
+    else
+      @teacher = Teacher.new(teacher_params)
 
-    respond_to do |format|
-      if @teacher.save
-        format.html { redirect_to teachers_url, notice: "已成功创建教师账户：#{@teacher.name}." }
-        format.json { render :show, status: :created, location: @teacher }
-      else
-        format.html { render :new }
-        format.json { render json: @teacher.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @teacher.save
+          format.html { redirect_to teachers_url, notice: "已成功创建教师账户：#{@teacher.name}." }
+        else
+          format.html { render :new }
+        end
       end
     end
   end
@@ -40,13 +59,17 @@ class TeachersController < BackyardController
   # PATCH/PUT /teachers/1
   # PATCH/PUT /teachers/1.json
   def update
+    unless @logged_teacher.id==params[:id].to_i
+      unless @logged_teacher.is_admin?
+        redirect_to edit_teacher_path(@logged_teacher),notice:"您只能编辑你自己的信息"
+        return
+      end
+    end
     respond_to do |format|
       if @teacher.update(teacher_params)
         format.html { redirect_to teachers_url, notice: '成功修改教师账户信息.' }
-        format.json { render :show, status: :ok, location: @teacher }
       else
         format.html { render :edit }
-        format.json { render json: @teacher.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -54,6 +77,11 @@ class TeachersController < BackyardController
   # DELETE /teachers/1
   # DELETE /teachers/1.json
   def destroy
+    unless @logged_teacher.is_admin?
+      redirect_to edit_teacher_path(@logged_teacher),notice:"抱歉，您没有删除教师账户的权限"
+      return
+    end
+
     @teacher.destroy
     respond_to do |format|
       format.html { redirect_to teachers_url, notice: '已删除教师账户.' }
@@ -67,8 +95,15 @@ class TeachersController < BackyardController
       @teacher = Teacher.find(params[:id])
     end
 
+    def set_logged_teacher
+      @logged_teacher=logged_teacher
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def teacher_params
-      params.require(:teacher).permit(:name, :password,:password_confirmation, :is_admin)
+      if @logged_teacher.is_admin?
+        params.require(:teacher).permit(:name, :password,:password_confirmation, :is_admin)
+      else
+        params.require(:teacher).permit(:name, :password,:password_confirmation)
+      end
     end
 end

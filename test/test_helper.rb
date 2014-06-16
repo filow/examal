@@ -15,6 +15,10 @@ class ActiveSupport::TestCase
   	teacher=Teacher.first
     session[:teacher_id]=teacher.id
   end
+  def login_as(user)
+    teacher=teachers(user)
+    session[:teacher_id]=teacher.id
+  end
   def logout
   	session.delete :teacher_id
   end

@@ -4,4 +4,10 @@ one:
   name: TestTeacher
   hashed_password: <%= Teacher.encrypt_password('admin',SALT) %>
   salt: <%= SALT %>
+  is_admin: true
+
+normal:
+  name: NormalTeacher
+  hashed_password: <%= Teacher.encrypt_password('normal',SALT) %>
+  salt: <%= SALT %>
   is_admin: false

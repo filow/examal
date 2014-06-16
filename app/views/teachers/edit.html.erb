@@ -1,6 +1,7 @@
-<h1>Editing teacher</h1>
-
+<h3>编辑教师信息</h3>
+<%= content_for :ext_nav_item do %>
+<li class="current">
+	<a>编辑教师信息</a>
+</li>
+<% end %>
 <%= render 'form' %>
-
-<%= link_to 'Show', @teacher %> |
-<%= link_to 'Back', teachers_path %>
