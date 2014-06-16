@@ -8,10 +8,10 @@ class TeachersControllerTest < ActionController::TestCase
       password: "123456",
       password_confirmation: "123456"
     }
+    login if defined? session
     # 从fixture/teachers.yml中获得一个对象
     @teacher = teachers(:one)
   end
-
   test "访问教师管理首页" do
     # 访问index方法
     get :index
@@ -40,6 +40,7 @@ class TeachersControllerTest < ActionController::TestCase
   end
 
   test "should get edit" do
+    session[:teacher_id]=Teacher.first.id
     get :edit, id: @teacher
     assert_response :success
   end
@@ -56,4 +57,5 @@ class TeachersControllerTest < ActionController::TestCase
 
     assert_redirected_to teachers_path
   end
+
 end

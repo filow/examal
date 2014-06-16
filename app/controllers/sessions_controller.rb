@@ -1,17 +1,10 @@
 class SessionsController < ApplicationController
 	layout nothing: true
+	# get /login
 	def new
-		@fail_times=session[:fail_times]
-		unless session[:fail_wait].nil? 
-			if session[:fail_wait]>Time.now.to_i
-				@fail_wait=session[:fail_wait]
-			else
-				session[:fail_wait]=nil
-			end
-		end
-
 	end
 
+	# post /login
 	def create
 		if teacher = Teacher.auth(params[:name],params[:password])
 			session[:teacher_id]=teacher.id
@@ -22,6 +15,7 @@ class SessionsController < ApplicationController
 		end
 	end
 
+	# delete /logout
 	def destroy
 		session[:teacher_id]=nil
 		redirect_to login_url,notice: "已退出登录"

@@ -4,8 +4,8 @@ class BackyardController < ApplicationController
 
 	protected
 	def authorize
-		unless !(session[:teacher].nil?) && Teacher.find_by_id(session[:teacher_id])
-			redirect_to login_url,alert:"请登录后再使用后台系统1"
+		unless !(session[:teacher_id].nil?) && Teacher.find_by_id(session[:teacher_id])
+			redirect_to login_url,alert:"请登录后再使用后台系统"
 		end
 	end
 end

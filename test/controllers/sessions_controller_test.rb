@@ -10,8 +10,8 @@ class SessionsControllerTest < ActionController::TestCase
     test=teachers(:one)
     post :create, :name => test.name,:password => "admin"
     assert_redirected_to admin_url
-    assert_equal test.id,session[:teacher][:id]
-    assert_equal test.name,session[:teacher][:name]
+    assert_equal test.id,session[:teacher_id]
+    assert_equal test.name,session[:teacher_name]
   end
 
   test "失败的登录" do
