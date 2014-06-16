@@ -1,0 +1,428 @@
+@charset "utf-8";
+
+$color_base_bg:#d5d7d8; //18%灰
+$color_dark:#0e112a;
+
+@mixin border-radius($radius: 5px){
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    -o-border-radius: $radius;
+    border-radius: $radius;
+}
+@mixin border-top-radius($radius: 5px){
+    -webkit-border-top-left-radius: $radius;
+    -moz-border-radius-topleft: $radius;
+    border-top-left-radius: $radius;
+    -webkit-border-top-right-radius: $radius;
+    -moz-border-radius-topright: $radius;
+    border-top-right-radius: $radius;
+}
+/********** basic-styles *************/
+body{
+    background-color: $color_base_bg;
+    color:#333;
+    min-width: 700px;
+    margin: 0;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+.clear{
+    clear: both;
+}
+
+/********** header *************/
+.header{
+    margin-top: 0px;
+    width: 100%;
+    height: 58px;
+    display: block;
+    min-height: 50px;
+    padding-top: 5px;
+    background-color: #2f2a63;
+    background-repeat: repeat no-repeat;
+    border-bottom: 1px solid #2E2E2E;
+}
+
+.header-logo{
+    float: left;
+    margin-top: 8px;
+    margin-left: 25px;
+}
+
+#logo{
+    height: 55px;
+    margin-top: -13px;
+}
+
+/********** search **********/
+.panel-search{
+    padding-top: 10px;
+    margin-right: 20px;
+}
+/**********  user ***********/
+.userinfo{
+  margin-right: 20px;
+  margin-top: 10px;
+}
+
+/**************** login-box ************/
+.center{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container{
+  text-align: center;
+  width: 100%;
+}
+
+.login-box{
+    width: 340px;
+    background-color: white;
+    margin-top: 90px;
+    @include border-radius(6px);
+    box-shadow: 0 6px 19px #888888;
+    text-align: left;
+
+    .login-box-header{
+        background-color: #000;
+
+        @include border-top-radius(6px);
+
+        background-color: #2D3F52;
+        background-image: linear-gradient(to bottom, #34495E, #233140);
+        background-repeat: repeat-x;
+        border-bottom: solid 2px rgb(227,227,227);
+
+        padding:22px 110px 22px 110px;
+        span{
+            color: white;
+            font-size: 25px;
+            font-family: "Microsoft Yahei";
+            font-weight: bold;
+            text-shadow: 0 1px 1px #000;    
+        }
+    }
+}
+.login-form{
+  margin:10px 20px 10px 20px;
+}
+
+.login-input{
+  width:250px; /**** ie6+ ****/
+  margin: 5px 0 5px 0 !important;
+}
+
+
+.login-input::-moz-placeholder .login-input::-webkit-input-placeholder{
+  color: red;
+}
+.validate{
+  width: 100px !important;
+}
+
+.validate-pic{
+  height: 38px;
+  margin-left: 10px !important;
+}
+.login-label{
+  font-family: "Microsoft Yahei";
+  margin-top: 5px;
+  a{
+    text-decoration: none;
+    color: rgb(175,175,175);
+    cursor: pointer;
+    font-size: 14px;
+    float: right;
+    &:hover{
+        color:#34495e;
+    }
+    label{
+        display:inline !important;
+    }
+  }
+}
+
+.login-body{
+  width: 320px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+
+.login-button{
+    width:280px !important; /**** ie6+ ****/
+    font-family: "Microsoft Yahei";
+    font-size: 16px;
+    margin-top: 13px;
+    margin-bottom: 20px;
+}
+
+.login-alert{
+  position: absolute;
+  width: 100%;
+  padding: 8px 0 8px 0;
+  border: none;
+}
+
+.removing-tag{
+  position: absolute;
+  right: 2%;
+  top: 8px;
+  font-size: 16px;
+  cursor:pointer;
+}
+
+.popover-content{
+  font-family: "Microsoft Yahei";
+}
+
+/************* main *************/
+.main{
+    margin-left: auto;
+    margin-right: auto;
+    width: 99.9%;
+    background-repeat: repeat;
+    min-width: 700px;
+}
+/************* navigator *************/
+.navigator{
+    position: absolute;
+    width: 14%;
+    height: 100%;
+    ul{
+        margin: 0px;
+        li{
+            list-style-type: none;
+            float: right;
+            display: block;
+            text-align: center;
+            margin: 0px 0px 0px 5%;
+            padding: 0px;
+            width: 95%;
+            font-size: 14px;
+            color:#e1e2e9;
+            background-color: $color_dark;
+            border-bottom: 1px solid #22284f;
+            border-top: 0px;
+            border-right: 0px;
+            border-left: 0px;
+            &.active{color:#FFF}
+            &:hover{
+                background-color: #22284f;
+            }
+            &:nth-child(4n+1){
+                border-left: 4px solid #35b5eb;
+                &:hover,&.active{background-color: #35b5eb;}
+            }
+            &:nth-child(4n+2){
+                border-left: 4px solid #0acf67;
+                &:hover,&.active{background-color: #0acf67;}
+            }
+            &:nth-child(4n+3){
+                border-left: 4px solid #f2c13f;
+                &:hover,&.active{background-color: #f2c13f;}
+            }
+            &:nth-child(4n+4){
+                border-left: 4px solid #eb5b4c;
+                &:hover,&.active{background-color: #eb5b4c;}
+            }
+        }
+        a{
+            display: block;
+            width: 100%;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            i{
+                margin-top: -2px;
+                margin-right: 3px;
+            }
+            &:link,&:visited,&:active{
+                color:$color_base_bg;
+            }
+            &:hover{
+                color:#fff;
+            }
+        }
+
+    }
+}
+
+/********** content *********/
+.content{
+    display: block;
+    width: 85%;
+    margin-left: 15%;
+    border-left: none;
+    padding-bottom: 0px;
+}
+
+.content-body{
+    background-color: #EFEFEF;
+    padding: 5px 20px 0px 20px;
+}
+
+
+// footprint
+.nav-bar {
+    $navbar-bg:#3f67c0;
+    height: 40px;
+    background-color: $navbar-bg;
+    overflow: hidden;//防止部分a元素高度越界
+    ul{
+        margin:0px;
+        li{
+            list-style-type: none;
+            display: inline-block;  //显示为行元素
+            height: 40px;
+            margin:0 -4px 0 0px;
+            padding: 0;
+            a{
+                display: block;
+                font-size: 14px;
+                color:#fff;
+                padding: 8px 20px 8px 20px;
+                vertical-align: middle;
+                i{margin-right: 1px;}
+            }
+            &:hover{
+                background-color: lighten($navbar-bg, 10%);
+            }
+            &.current{
+                background-color: darken($navbar-bg, 10%);
+            }
+        }
+    }
+}
+
+/* button-group */
+.button-group{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    ul{
+        li{
+            background-color: red;
+            width: 150px;
+            height: 150px;
+        }
+    }
+}
+
+
+/* footer */ 
+.footer{
+    border-top: 1px solid #ccc;
+    padding: 20px 0;
+    font-size: 12px;
+}
+
+
+
+/*********** Permission Modal *************/
+.table{
+  margin-bottom: 0;
+}
+
+.table span{
+  padding: 6px 10px;
+  font-size: 13px;
+}
+.role_detail{
+  margin-bottom: 2px;
+}
+
+.modal-body{
+  overflow: visible;
+}
+
+.modal-footer{
+  text-align: center;
+}
+#edit_modal,#create_role_modal,#create_user_modal{
+  width: auto;
+  left: 55%;
+}
+
+.user_edit_form,.user_create_form,.role_create_form{
+  margin: 0;
+  width: 100%;
+  margin: 0 20px 0 20px;
+}
+
+.user_edit_form label,.user_create_form label,.role_create_form label{
+  width: 100px;
+  font-family: "Microsoft Yahei";
+}
+
+
+#checkbox{
+  width: auto;
+}
+
+.checkbox{
+  display: inline;
+  padding-left: 10px;
+}
+
+#delete_modal .modal-body{
+  text-align: center;
+  padding: 30px 0 30px 0;
+}
+
+.user_create,.role_create{
+  margin-bottom: 15px;
+}
+
+/************* role_access ***********/
+.owned {
+    color:#34495e;
+}
+
+#role_modal .modal-body{
+  overflow-y: auto;
+}
+
+#role_access_data table{
+  width: 100%;
+}
+
+#role_access_data table td{
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+}
+
+#role_access_data .icon-ok{
+  float: right;
+}
+
+/*.role_access_table tr{
+    border-bottom: 1px solid #888;
+  }*/
+
+/********** config index **************/
+
+.button-edit{
+  margin-right: 10px;
+}
+
+.input_datetime{
+  width: 178px;
+  background-color: #fff!important;
+}
+
+.button-td{
+  width: 200px;
+}
+.button-td button{
+  margin: 0 5px 0 5px;
+}
+
+.field_with_errors{
+  color:red;
+  border-color: red;
+  input{border-color: red;}
+}

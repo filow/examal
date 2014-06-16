@@ -1,14 +1,94 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Examal</title>
+  <title><%= yield :title %><%= SITE_NAME %>后台管理</title>
+  <meta charset="UTF-8" />
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<!--     <link rel="stylesheet" href="__PUBLIC__/plugins/icheck/skins/square/blue.css">
+    <link rel="stylesheet" href="__PUBLIC__/plugins/bootstrap-select/bootstrap-select.css">
+    <link rel="stylesheet" href="__PUBLIC__/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css">
+    <link rel="stylesheet" href="__PUBLIC__/plugins/datatables/datatables.css" /> -->
+  <%= yield :css %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="header">
+	<div class="row">
+		<div class="header-logo">
+            <%= link_to(image_tag("logo.png",id:"logo"),admin_path) %>
+        </div>
+        <!-- 用户信息栏 -->
+		<div class="pull-right userinfo" id="nav-bar">
+            <button class="btn">123231</button>
+            <%= link_to "账户管理",teachers_path,:class=>"btn" %>
+            <%= link_to "回到前台","#",:class=>"btn" %>
+            <%= link_to "退出登录","#",:class=>"btn btn-warning" %>
+		</div>
+	</div>
+</div>
+<!--main-->
+<div class="main">
 
-<%= yield %>
+    <!-- navigator -->
+    <%= render "sidebar" %>
 
+    <div class="content">
+        <!-- nav-bar -->
+        <div class="nav-bar">
+            <!--breadcrumb-->
+            <ul class="nav-item">
+
+	<% NAVS.each do |nav| %>
+        <% if nav[:controller]==request.filtered_parameters["controller"] %>
+        <% nav[:children].each do |item| %>
+        	<% if item[:action]==request.filtered_parameters["action"] %>
+        	<li class="current">
+        	<% else %>
+	        <li>
+	        <% end %>
+	        	<%= link_to fa_icon(item[:icon],text:item[:text]),controller:nav[:controller],action: item[:action] %>
+	        </li>
+		<% end %>
+        <% end %>
+    <%  end %>
+                <%= yield :ext_nav_item %>
+            </ul><!--/breadcrumb-->
+        </div><!-- /nav-bar -->
+
+        <div class="content-body">
+
+        <% unless notice.nil? %>
+	        <div class="alert alert-info">
+	          <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <%= notice %>
+	        </div>
+        <% end %>
+
+
+        <%= yield %>
+
+
+        <!--footer -->
+        <div class="footer">
+            <small> <%= SITE_NAME %> 后台管理系统 &#169; Copyright <%= Time.now.year %> | <a href="#">回到顶部</a> </small>
+        </div>
+        <!--/footer -->
+        </div>
+    </div>
+</div>
+</div>
 </body>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= yield :js %>
+
+<% #模拟产生本地ajax请求 %>
+<!-- <script src="__PUBLIC__/js/jquery.mockjax.js"></script> -->
+<!-- <script src="__PUBLIC__/plugins/icheck/jquery.icheck.min.js"></script> -->
+<!-- <script src="__PUBLIC__/plugins/bootstrap-select/bootstrap-select.min.js"></script> -->
+<!-- <script src="__PUBLIC__/js/jquery.autocomplete.js"></script> -->
+<!-- <script src="__PUBLIC__/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script> -->
+<!-- <script type="text/javascript" src="__PUBLIC__/plugins/bootstrap-datetimepicker/js/locale.zh-CN.js" charset="UTF-8"></script> -->
+<!-- <script type="text/javascript" src="__PUBLIC__/plugins/datatables/dataTables.js"></script> -->
+<!-- <script type="text/javascript" src="__PUBLIC__/plugins/datatables/bootstrap.plugin.js"></script> -->
+
 </html>

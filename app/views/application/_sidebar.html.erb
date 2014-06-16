@@ -1,0 +1,13 @@
+<div class="navigator">
+<ul>
+    <% NAVS.each do |nav| %>
+        <% if nav[:controller]==request.filtered_parameters["controller"] %>
+        <li class="active">
+        <% else %>
+        <li>
+        <% end %>
+        <%= link_to fa_icon(nav[:icon],text:nav[:text]),controller: nav[:controller],action: nav[:action] %>
+    </li>
+    <%  end %>
+</ul>
+</div>

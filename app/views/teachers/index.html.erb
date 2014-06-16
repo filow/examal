@@ -1,0 +1,27 @@
+<h3>教师列表</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>教师姓名</th>
+      <th>是否为管理员</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @teachers.each do |teacher| %>
+      <tr>
+        <td><%= teacher.name %></td>
+        <td><%= teacher.is_admin %></td>
+        <td><%= link_to 'Show', teacher %></td>
+        <td><%= link_to 'Edit', edit_teacher_path(teacher) %></td>
+        <td><%= link_to 'Destroy', teacher, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '新建一个教师账户', new_teacher_path,class:"btn btn-success" %>
