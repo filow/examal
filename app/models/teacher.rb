@@ -17,7 +17,8 @@ class Teacher < ActiveRecord::Base
 	end
 
 	def self.encrypt_password(password,salt)
-		Digest::SHA2.hexdigest(password+salt)
+
+		Digest::SHA2.hexdigest(password.to_s+salt)
 	end
 
 	def password=(password)

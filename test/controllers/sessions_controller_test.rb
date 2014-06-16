@@ -1,19 +1,27 @@
 require 'test_helper'
 
 class SessionsControllerTest < ActionController::TestCase
-  test "should get new" do
+  test "访问登录页面" do
     get :new
     assert_response :success
   end
 
-  test "should get create" do
-    get :create
-    assert_response :success
+  test "成功的登录" do
+    test=teachers(:one)
+    post :create, :name => test.name,:password => "admin"
+    assert_redirected_to admin_url
+    assert_equal test.id,session[:teacher][:id]
+    assert_equal test.name,session[:teacher][:name]
   end
 
-  test "should get destroy" do
+  test "失败的登录" do
+    test=teachers(:one)
+    post :create, :name => test.name,:password => "11111"
+    assert_redirected_to login_url
+  end
+  test "退出登录" do
     get :destroy
-    assert_response :success
+    assert_redirected_to login_url
   end
 
 end
