@@ -22,8 +22,8 @@
         </div>
         <!-- 用户信息栏 -->
 		<div class="pull-right userinfo" id="nav-bar">
-            <button class="btn">123231</button>
-            <%= link_to "账户管理",teachers_path,:class=>"btn" %>
+            <button class="btn">欢迎您：<%= session[:teacher_name] %></button>
+            <%= link_to "账户管理",edit_teacher_path(session[:teacher_id]),:class=>"btn" %>
             <%= link_to "回到前台","#",:class=>"btn" %>
             <%= link_to "退出登录",logout_path,method: :delete,:class=>"btn btn-warning" %>
 		</div>
@@ -34,7 +34,7 @@
 
     <!-- navigator -->
     <%= render "sidebar" %>
-
+    
     <div class="content">
         <!-- nav-bar -->
         <div class="nav-bar">
@@ -66,8 +66,6 @@
               <%= notice %>
 	        </div>
         <% end %>
-
-
         <%= yield %>
 
 

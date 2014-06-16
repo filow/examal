@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
+<% SALT="kegne2342" unless defined?(SALT) %>
 one:
   name: TestTeacher
-  hashed_password: "b22d021d9e615983675746af9abd609bbab9043e324ced0cbad57cb5bdffb631"
-  salt: "-5834508380.293155136029151"
+  hashed_password: <%= Teacher.encrypt_password('admin',SALT) %>
+  salt: <%= SALT %>
   is_admin: false

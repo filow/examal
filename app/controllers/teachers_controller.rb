@@ -1,4 +1,4 @@
-class TeachersController < ApplicationController
+class TeachersController < BackyardController
   before_action :set_teacher, only: [:show, :edit, :update, :destroy]
 
   # GET /teachers
