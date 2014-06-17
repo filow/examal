@@ -2,7 +2,7 @@
 <% if @teacher.errors.any? %>
   <div class="alert alert-block alert-error">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <h5>您填写的表单有<%= pluralize(@teacher.errors.count, "个错误") %>需要修正：</h5>
+    <h5>您填写的表单有<%= @teacher.errors.count  %>个错误需要修正：</h5>
     <ul>
         <% @teacher.errors.full_messages.each do |message| %>
           <li><%= message %></li>

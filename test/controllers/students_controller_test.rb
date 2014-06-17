@@ -2,44 +2,51 @@ require 'test_helper'
 
 class StudentsControllerTest < ActionController::TestCase
   setup do
-    @student = students(:one)
+    @student = students(:stu1)
+    login_as :admin if defined? session
+    @new_attrs={grade: "12", password: "111", name: "hihi", profession: "", sex: "true", stuid:"125213912"}
   end
 
-  test "should get index" do
+  test "访问学生列表页面" do
     get :index
     assert_response :success
     assert_not_nil assigns(:students)
   end
 
-  test "should get new" do
+  test "访问新建学生页面" do
     get :new
     assert_response :success
   end
 
-  test "should create student" do
+  test "新建一个学生" do
     assert_difference('Student.count') do
-      post :create, student: { grade: @student.grade, hashed_password: @student.hashed_password, name: @student.name, profession: @student.profession, sex: @student.sex, stuid: @student.stuid }
+      post :create, student: @new_attrs
     end
 
     assert_redirected_to student_path(assigns(:student))
   end
 
-  test "should show student" do
+  test "查看学生信息页面" do
     get :show, id: @student
     assert_response :success
   end
 
-  test "should get edit" do
+  test "访问编辑学生信息页面" do
     get :edit, id: @student
     assert_response :success
   end
 
-  test "should update student" do
+  test "更新学生信息页面" do
     patch :update, id: @student, student: { grade: @student.grade, hashed_password: @student.hashed_password, name: @student.name, profession: @student.profession, sex: @student.sex, stuid: @student.stuid }
     assert_redirected_to student_path(assigns(:student))
   end
 
-  test "should destroy student" do
+  test "删除学生帐号" do
+    login_as :normal
+    delete :destroy, id: @student
+    assert_redirected_to students_path
+
+    login_as :admin
     assert_difference('Student.count', -1) do
       delete :destroy, id: @student
     end

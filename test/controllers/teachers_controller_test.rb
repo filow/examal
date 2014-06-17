@@ -8,9 +8,9 @@ class TeachersControllerTest < ActionController::TestCase
       password: "123456",
       password_confirmation: "123456"
     }
-    login_as :one if defined? session
+    login_as :admin if defined? session
     # 从fixture/teachers.yml中获得一个对象
-    @teacher = teachers(:one)
+    @teacher = teachers(:admin)
   end
   test "访问教师管理首页" do
     # 访问index方法
@@ -100,7 +100,7 @@ class TeachersControllerTest < ActionController::TestCase
     new_normal=Teacher.find_by_id(normal.id)
     assert_equal new_normal.is_admin,normal.is_admin
 
-    login_as :one
+    login_as :admin
     patch :update, id: normal, teacher: attrs
     new_normal=Teacher.find_by_id(normal.id)
     assert_equal new_normal.is_admin? ,true
@@ -112,7 +112,7 @@ class TeachersControllerTest < ActionController::TestCase
     delete :destroy, id: @teacher
     assert_redirected_to edit_teacher_path(teachers(:normal))
 
-    login_as :one
+    login_as :admin
     assert_difference('Teacher.count', -1) do
       delete :destroy, id: @teacher
     end

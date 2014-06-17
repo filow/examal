@@ -1,17 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  stuid: MyString
-  name: MyString
-  hashed_password: MyString
-  sex: false
-  profession: MyString
-  grade: 1
-
-two:
-  stuid: MyString
-  name: MyString
-  hashed_password: MyString
-  sex: false
-  profession: MyString
-  grade: 1
+stu1:
+  stuid: 1206030201
+  name: HTEgrew
+  hashed_password: <%= Student.encrypt_password("111","HTEgrew") %>
+  sex: true
+  profession: 
+  grade: 12

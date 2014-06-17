@@ -1,6 +1,5 @@
 class TeachersController < BackyardController
   before_action :set_teacher, only: [:show, :edit, :update, :destroy]
-  before_action :set_logged_teacher
   # GET /teachers
   # GET /teachers.json
   def index
@@ -93,10 +92,6 @@ class TeachersController < BackyardController
     # Use callbacks to share common setup or constraints between actions.
     def set_teacher
       @teacher = Teacher.find(params[:id])
-    end
-
-    def set_logged_teacher
-      @logged_teacher=logged_teacher
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def teacher_params

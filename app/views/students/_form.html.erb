@@ -1,41 +1,41 @@
-<%= form_for(@student) do |f| %>
-  <% if @student.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
-
-      <ul>
-      <% @student.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+<%= form_for(@student,html:{class:"form-inline"}) do |f| %>
+<% if @student.errors.any? %>
+  <div class="alert alert-block alert-error">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <h5>您填写的表单有<%= @student.errors.count %>个错误需要修正：</h5>
+    <ul>
+        <% @student.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+    </ul>
+  </div>
   <% end %>
 
   <div class="field">
-    <%= f.label :stuid %><br>
+    <%= f.label :stuid,"学号(登录用户名)" %><br>
     <%= f.text_field :stuid %>
   </div>
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :name,"学生姓名" %><br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :hashed_password %><br>
-    <%= f.text_field :hashed_password %>
+    <%= f.label :password %><br>
+    <%= f.text_field :password %>
   </div>
   <div class="field">
-    <%= f.label :sex %><br>
-    <%= f.check_box :sex %>
+    <%= f.label :sex,"性别" %><br>
+    <%= f.select :sex, [["男",true],["女",false]], include_blank: true %>
   </div>
   <div class="field">
-    <%= f.label :profession %><br>
+    <%= f.label :profession,"专业" %><br>
     <%= f.text_field :profession %>
   </div>
   <div class="field">
-    <%= f.label :grade %><br>
+    <%= f.label :grade,"年级（只写年份，例如12）" %><br>
     <%= f.number_field :grade %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "提交",:class=> "btn btn-success" %>
   </div>
 <% end %>
