@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :questions
+
   resources :students
 
   controller :sessions do

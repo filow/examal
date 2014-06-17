@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyString
+  options: MyText
+  teacher_id: 1
+  answer: MyString
+  multiple: false
+  difficulty: 1
+
+two:
+  title: MyString
+  description: MyString
+  options: MyText
+  teacher_id: 1
+  answer: MyString
+  multiple: false
+  difficulty: 1
