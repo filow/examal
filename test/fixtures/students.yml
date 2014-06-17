@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  stuid: MyString
+  name: MyString
+  hashed_password: MyString
+  sex: false
+  profession: MyString
+  grade: 1
+
+two:
+  stuid: MyString
+  name: MyString
+  hashed_password: MyString
+  sex: false
+  profession: MyString
+  grade: 1
