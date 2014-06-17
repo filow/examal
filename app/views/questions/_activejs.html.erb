@@ -4,23 +4,15 @@ $('#question_answer').selectpicker({
 	countSelectedText:"选了{0}个，共{1}个",
   size: 4
 });
-function change_select(obj){
+function change_select(){
 	selector=$('#question_answer');
 	selector.html("");
-	values=obj[0].value.split(",");
+	values=$('#question_options')[0].value.split(",");
 	for (var i = 0; i <= values.length -1; i++) {
 		selector.append("<option value=\""+values[i]+"\">"+values[i]+"</option>");
 	};
 	selector.selectpicker('refresh');
 }
-$('#question_multiple').click(function(){
-	if(question_multiple.checked){
-		$('#question_answer').attr("multiple","multiple");
-	}else{
-		$('#question_answer').removeAttr("multiple");
-	}
-	$('#question_answer').selectpicker('refresh');
-});
 
 $('#question_options').tagsInput({
 	"defaultText": "新建一个选项",

@@ -12,5 +12,10 @@
 <%= render "js" %>
 <script>
 <%= render "activejs" %>
+
+var answer="<%= @question.answer %>".split(",");
+answer.pop();
+$('#question_answer').selectpicker('val',answer );
+$('#question_answer').selectpicker("refresh");
 </script>
 <% end %>
