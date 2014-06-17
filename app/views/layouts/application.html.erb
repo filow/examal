@@ -7,10 +7,7 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-<!--     <link rel="stylesheet" href="__PUBLIC__/plugins/icheck/skins/square/blue.css">
-    <link rel="stylesheet" href="__PUBLIC__/plugins/bootstrap-select/bootstrap-select.css">
-    <link rel="stylesheet" href="__PUBLIC__/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css">
-    <link rel="stylesheet" href="__PUBLIC__/plugins/datatables/datatables.css" /> -->
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= yield :css %>
   <%= csrf_meta_tags %>
 </head>
@@ -79,17 +76,5 @@
 </div>
 </div>
 </body>
-<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 <%= yield :js %>
-
-<% #模拟产生本地ajax请求 %>
-<!-- <script src="__PUBLIC__/js/jquery.mockjax.js"></script> -->
-<!-- <script src="__PUBLIC__/plugins/icheck/jquery.icheck.min.js"></script> -->
-<!-- <script src="__PUBLIC__/plugins/bootstrap-select/bootstrap-select.min.js"></script> -->
-<!-- <script src="__PUBLIC__/js/jquery.autocomplete.js"></script> -->
-<!-- <script src="__PUBLIC__/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script> -->
-<!-- <script type="text/javascript" src="__PUBLIC__/plugins/bootstrap-datetimepicker/js/locale.zh-CN.js" charset="UTF-8"></script> -->
-<!-- <script type="text/javascript" src="__PUBLIC__/plugins/datatables/dataTables.js"></script> -->
-<!-- <script type="text/javascript" src="__PUBLIC__/plugins/datatables/bootstrap.plugin.js"></script> -->
-
 </html>

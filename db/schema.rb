@@ -14,8 +14,8 @@
 ActiveRecord::Schema.define(version: 20140617072208) do
 
   create_table "questions", force: true do |t|
-    t.string   "title",                       null: false
-    t.string   "description"
+    t.text     "title",                       null: false
+    t.text     "description"
     t.text     "options",                     null: false
     t.integer  "teacher_id"
     t.string   "answer",                      null: false
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20140617072208) do
     t.datetime "updated_at"
   end
 
-  add_index "questions", ["title", "teacher_id", "difficulty"], name: "index_questions_on_title_and_teacher_id_and_difficulty", using: :btree
+  add_index "questions", ["teacher_id", "difficulty"], name: "index_questions_on_teacher_id_and_difficulty", using: :btree
 
   create_table "students", force: true do |t|
     t.string   "stuid",           limit: 50

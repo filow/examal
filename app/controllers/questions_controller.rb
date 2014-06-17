@@ -1,4 +1,4 @@
-class QuestionsController < ApplicationController
+class QuestionsController < BackyardController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
   # GET /questions
@@ -15,6 +15,10 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     @question = Question.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /questions/1/edit
@@ -69,6 +73,19 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:title, :description, :options, :teacher_id, :answer, :multiple, :difficulty)
+      prm=params.require(:question).permit(:title, :description, :options,  :difficulty,answer: [])
+      prm[:teacher_id]=@logged_teacher.id
+      answer=""
+      count=0
+      prm[:answer].each{ |x|
+        unless x.empty?
+          answer+=x.to_s+","
+          count+=1
+        end
+      }
+      prm[:answer]=answer
+      prm[:multiple]=true if count>0
+      
+      return prm
     end
 end

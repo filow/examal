@@ -4,6 +4,7 @@ class Teacher < ActiveRecord::Base
 	validates_uniqueness_of :name,message:"应当是唯一的"
 	validates_confirmation_of :password,message: "和密码不匹配"
 	validates_length_of :password,minimum: 6,message: "至少要有6位"
+	has_many :questions,:dependent => :destroy
 	attr_accessor :password_confirmation
 	attr_reader :password
 

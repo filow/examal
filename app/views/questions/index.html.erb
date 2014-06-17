@@ -1,37 +1,64 @@
-<h1>Listing questions</h1>
+<%= content_for :css do %>
+<%= render 'css' %>
+<% end %>
 
-<table>
+<h3>题库列表</h3>
+<%= link_to '新建题目', new_question_path,:class=>"btn btn-success",:remote=>true %>
+<br><br>
+<div id="create_quesions" width="100%"></div>
+<table id="datatable">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Options</th>
-      <th>Teacher</th>
-      <th>Answer</th>
-      <th>Multiple</th>
-      <th>Difficulty</th>
+      <th>题目名称</th>
+      <th>介绍</th>
+      <th>选项</th>
+      <th>难度系数</th>
+      <th>最近更新时间</th>
+      <th>提供者</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @questions.each do |question| %>
-      <tr>
+      <tr class="<%= cycle("odd", "even") %>">
         <td><%= question.title %></td>
         <td><%= question.description %></td>
         <td><%= question.options %></td>
-        <td><%= question.teacher_id %></td>
-        <td><%= question.answer %></td>
-        <td><%= question.multiple %></td>
         <td><%= question.difficulty %></td>
-        <td><%= link_to 'Show', question %></td>
-        <td><%= link_to 'Edit', edit_question_path(question) %></td>
-        <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= question.updated_at.strftime("%Y-%m-%d") %></td>
+        <td><%= question.teacher.name %></td>
+        <td><%= link_to '详情', question %></td>
+        <td><%= link_to '编辑', edit_question_path(question) %></td>
+        <td><%= link_to '删除', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+<br><br>
 
-<%= link_to 'New Question', new_question_path %>
+
+
+<%= content_for :js do %>
+<%= render "js" %>
+<script>
+var oTable=$('#datatable').dataTable({
+    "sPaginationType": "full_numbers",
+    "sPaginationType": "bootstrap",
+    "oLanguage": {
+            "sUrl": "plugins/datatables/lan.json"
+        },
+        "aaSorting": [[ 6, "desc" ]],
+        "aoColumns": [
+          null,  
+          { "asSorting": [] },
+          { "asSorting": [] },null,null,null,null,null,null  
+        ] ,
+        'iDisplayLength':25,
+        "bStateSave": true
+  });
+
+</script>
+<% end %>

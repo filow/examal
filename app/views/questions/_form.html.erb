@@ -1,4 +1,5 @@
 <%= form_for(@question) do |f| %>
+
   <% if @question.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
@@ -10,36 +11,34 @@
       </ul>
     </div>
   <% end %>
+<table class="span12">
+  <tr>
+    <td class="span2"><%= f.label :title,"题目" %></td>
+    <td class="span10"><%= f.text_field :title,placeholder:"请输入试题的题目",:class=>"span6" %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :description,"问题描述" %></td>
+    <td><%= f.text_area :description,:class=>"span6" %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :options,"选项" %></td>
+    <td><%= f.text_field :options %></td>
+  </tr>
+  <tr>
+    <td valign="top"><%= f.label :answer,"答案" %></td>
+    <td>
+     <%= f.select :answer, [], {include_blank: false},{multiple:true,:class=>"span6"} %>
+    </td>
+  </tr>
+  <tr>
+    <td><%= f.label :difficulty,"难度" %></td>
+    <td><%= f.number_field :difficulty,min: "1",max:"10" %>
+      <span class="label" id="diff">入门</span>
+    </td>
+  </tr>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :options %><br>
-    <%= f.text_area :options %>
-  </div>
-  <div class="field">
-    <%= f.label :teacher_id %><br>
-    <%= f.number_field :teacher_id %>
-  </div>
-  <div class="field">
-    <%= f.label :answer %><br>
-    <%= f.text_field :answer %>
-  </div>
-  <div class="field">
-    <%= f.label :multiple %><br>
-    <%= f.check_box :multiple %>
-  </div>
-  <div class="field">
-    <%= f.label :difficulty %><br>
-    <%= f.number_field :difficulty %>
-  </div>
+</table>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "提交",:class=>"btn btn-success" %>
   </div>
 <% end %>
