@@ -25,7 +25,7 @@
         <td><%= question.title %></td>
         <td><%= question.description %></td>
         <td><%= question.options %></td>
-        <td><%= diffculty question.difficulty %></td>
+        <td><%= difficulty_level question.difficulty %></td>
         <td><%= question.updated_at.strftime("%Y-%m-%d") %></td>
         <td><%= question.teacher.name %></td>
         <td><%= link_to '详情', question,remote: true %></td>

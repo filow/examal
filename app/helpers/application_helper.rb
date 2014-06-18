@@ -1,6 +1,11 @@
 module ApplicationHelper
 	def admin_only(&block)
-		if @logged_teacher.is_admin?
+		if @logged_teacher.is_admin? || 
+			capture(&block)
+		end
+	end
+	def admin_and_self_only(id,&block)
+		if @logged_teacher.is_admin? || @logged_teacher.id==id
 			capture(&block)
 		end
 	end

@@ -1,6 +1,20 @@
-<h1>Editing exam</h1>
+<%= content_for :ext_nav_item do %>
+<li class="current">
+  <a>编辑“<%= @exam.name %>”</a>
+</li>
+<% end %>
+
+<%= content_for :css do %>
+<%= render 'css' %>
+<% end %>
+<h3>编辑考试</h3>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @exam %> |
-<%= link_to 'Back', exams_path %>
+<%= link_to '<< 返回', exams_path,:class=>"btn" %>
+<%= content_for :js do %>
+<%= render "js" %>
+<script>
+<%= render "activejs" %>
+</script>
+<% end %>

@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140618021924) do
+ActiveRecord::Schema.define(version: 20140618105229) do
 
   create_table "exams", force: true do |t|
-    t.string   "name",        null: false
+    t.string   "name",                                       null: false
     t.text     "description"
     t.datetime "valid_from"
     t.datetime "valid_to"
@@ -22,7 +22,15 @@ ActiveRecord::Schema.define(version: 20140618021924) do
     t.integer  "teacher_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "average_difficulty", precision: 5, scale: 2
   end
+
+  create_table "exams_questions", id: false, force: true do |t|
+    t.integer "exam_id",     null: false
+    t.integer "question_id", null: false
+  end
+
+  add_index "exams_questions", ["exam_id", "question_id"], name: "index_exams_questions_on_exam_id_and_question_id", using: :btree
 
   create_table "questions", force: true do |t|
     t.text     "title",                       null: false

@@ -4,4 +4,5 @@ class Question < ActiveRecord::Base
 	validates_inclusion_of :difficulty,in: 1..10
 	validates_length_of :title,minimum: 8,message: "至少要有8位"
 	belongs_to :teacher
+	has_and_belongs_to_many :exams
 end

@@ -59,7 +59,20 @@
     <td>题目列表</td>
     <td>
       <div id="question_list">
-        <div class="clear" id="question_list_clear"></div>
+        <% unless @exam.questions.empty? %>
+          <% @exam.questions.each do |question| %>
+          <div class="opt_box span4">
+            <div>
+            <a class="text-error delete_box" data-id="<%= question.id %>">删除</a>
+            </div>
+            <h4><%= truncate question.title,length:16 %></h4>
+            <div>选项：<%= question.options %></div>
+            <div>答案：<%= question.answer %></div>
+            <div>难度：<%= difficulty_level question.difficulty %></div>
+            <input type="hidden" name="question_list[]" value="<%= question.id %>">
+          </div>
+          <% end %>
+        <% end %>
       </div>
 
     </td>
@@ -85,10 +98,16 @@
         <td><%= truncate question.title,length: 20 %></td>
         <td><%= question.description %></td>
         <td><%= question.options %></td>
-        <td><%= diffculty question.difficulty %></td>
+        <td><%= difficulty_level question.difficulty %></td>
         <td><%= question.updated_at.strftime("%Y-%m-%d") %></td>
         <td><%= question.teacher.name %></td>
-        <td><%= link_to "添加",exam_optbox_path(question),remote:true,:class=>"btn btn-small","data-id"=> question.id %></td>
+        <td>
+        <% if question.exams.where(id:@exam.id).count>0 %>
+        <%= link_to "已添加",exam_optbox_path(question),remote:true,:class=>"btn btn-small","data-id"=> question.id,disabled:true %>
+        <% else %>
+        <%= link_to "添加",exam_optbox_path(question),remote:true,:class=>"btn btn-small","data-id"=> question.id,disabled:false %>
+        <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
