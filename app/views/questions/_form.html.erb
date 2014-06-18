@@ -22,7 +22,14 @@
   </tr>
   <tr>
     <td><%= f.label :options,"选项" %></td>
-    <td><%= f.text_field :options %></td>
+    <td>
+  <div class="input-append">
+  <input class="span5" type="text" id="option_str" placeholder="输入类似与‘A:选项1 B:选项2’的选项字符串，可解析成标准形式">
+  <button class="btn" type="button" id="parse_option">解析</button>
+</div>
+
+    <%= f.text_field :options %>
+    </td>
   </tr>
   <tr>
     <td valign="top"><%= f.label :answer,"答案" %></td>

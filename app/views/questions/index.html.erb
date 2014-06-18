@@ -6,25 +6,25 @@
 <%= link_to '新建题目', new_question_path,:class=>"btn btn-success",:remote=>true %>
 <br><br>
 <div id="create_quesions" width="100%"></div>
-<table id="datatable">
+<table id="datatable" class="table">
   <thead>
     <tr>
-      <th>题目名称</th>
-      <th>介绍</th>
-      <th>选项</th>
+      <th width="200px">题目名称</th>
+      <th width="100px">介绍</th>
+      <th width="180px">选项</th>
       <th>难度系数</th>
       <th>最近更新时间</th>
       <th>提供者</th>
-      <th colspan="3"></th>
+      <th colspan="3" width="170px"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @questions.each do |question| %>
       <tr class="<%= cycle("odd", "even") %>">
-        <td><%= question.title %></td>
+        <td><%= truncate question.title,length:29 %></td>
         <td><%= question.description %></td>
-        <td><%= question.options %></td>
+        <td><%= truncate question.options,length:48 %></td>
         <td><%= difficulty_level question.difficulty %></td>
         <td><%= question.updated_at.strftime("%Y-%m-%d") %></td>
         <td><%= question.teacher.name %></td>

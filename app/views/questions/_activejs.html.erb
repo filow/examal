@@ -19,7 +19,17 @@ $('#question_options').tagsInput({
 	'onChange' : change_select,
 	'width':"460px"
 });
-
+$('#parse_option').click(function(){
+	var re=/(（\w）[^\b|\s]+)|(\w\W[^\b|\s]+)/ig
+	var str=$('#option_str').val();
+	var result=str.match(re);
+	var text;
+	for (var i =  0; i < result.length; i++) {
+		text=result[i].split(/^\w\W/)[1].trim();
+		$('#question_options').addTag(text);
+	};
+	
+});
 $('#question_difficulty').change(function(){
 	val=this.value;
 	diff=$('#diff');
