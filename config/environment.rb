@@ -14,6 +14,9 @@ NAVS=[
 		]},
 	{icon: "database", text: "题库管理", controller: "questions",children: [
 		{icon: "list" , text:"题库列表",action:"index"}
+		]},
+	{icon: "university", text: "考试管理", controller: "exams",children: [
+		{icon: "list" , text:"考试列表",action:"index"}
 		]}
 ]
 # Initialize the Rails application.

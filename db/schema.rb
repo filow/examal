@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140617072208) do
+ActiveRecord::Schema.define(version: 20140618021924) do
+
+  create_table "exams", force: true do |t|
+    t.string   "name",        null: false
+    t.text     "description"
+    t.datetime "valid_from"
+    t.datetime "valid_to"
+    t.integer  "timespan"
+    t.integer  "teacher_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "questions", force: true do |t|
     t.text     "title",                       null: false

@@ -5,6 +5,8 @@ class Teacher < ActiveRecord::Base
 	validates_confirmation_of :password,message: "和密码不匹配"
 	validates_length_of :password,minimum: 6,message: "至少要有6位"
 	has_many :questions,:dependent => :destroy
+	has_many :exams,:dependent => :destroy
+
 	attr_accessor :password_confirmation
 	attr_reader :password
 

@@ -1,0 +1,27 @@
+
+var oTable=$('#datatable').dataTable({
+    "sPaginationType": "full_numbers",
+    "sPaginationType": "bootstrap",
+    "oLanguage": {
+            "sUrl": "/plugins/datatables/lan.json"
+        },
+        "aaSorting": [[ 5, "desc" ]],
+        "aoColumns": [
+          null,  
+          { "asSorting": [] },
+          { "asSorting": [] },null,null,null,null
+        ] ,
+        'iDisplayLength':25,
+        "bStateSave": true
+  });
+
+$('.form_date').datetimepicker({
+    language:  'zh-CN',
+    weekStart: 1,
+    todayBtn:  1,
+    autoclose: 1,
+    todayHighlight: 1,
+    startView: 2,
+    minView: 0,
+    forceParse: 0
+});

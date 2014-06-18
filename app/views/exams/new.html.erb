@@ -1,0 +1,16 @@
+<%= content_for :css do %>
+<%= render 'css' %>
+<% end %>
+<h3>新建考试</h3>
+
+<%= render 'form' %>
+
+
+<%= link_to '<< 返回', exams_path,:class=>"btn" %>
+
+<%= content_for :js do %>
+<%= render "js" %>
+<script>
+<%= render "activejs" %>
+</script>
+<% end %>

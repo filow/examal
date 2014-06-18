@@ -32,7 +32,7 @@
 
         <% if @edit_or_delete_right %>
         <td><%= link_to '编辑', edit_question_path(question) %></td>
-        <td><%= link_to '删除', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '删除', question, method: :delete, data: { confirm: '确认删除?' } %></td>
         <% end %>
 
       </tr>

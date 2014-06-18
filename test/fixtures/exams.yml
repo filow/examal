@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  valid_from: 
+  valid_to: 
+  timespan: 1
+  teacher_id: 1
+
+two:
+  name: MyString
+  description: MyText
+  valid_from: 
+  valid_to: 
+  timespan: 1
+  teacher_id: 1

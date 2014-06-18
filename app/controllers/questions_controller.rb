@@ -4,7 +4,7 @@ class QuestionsController < BackyardController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all
+    @questions = Question.order(updated_at: :desc).all
   end
 
   # GET /questions/1

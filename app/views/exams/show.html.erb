@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @exam.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @exam.description %>
+</p>
+
+<p>
+  <strong>Valid from:</strong>
+  <%= @exam.valid_from %>
+</p>
+
+<p>
+  <strong>Valid to:</strong>
+  <%= @exam.valid_to %>
+</p>
+
+<p>
+  <strong>Timespan:</strong>
+  <%= @exam.timespan %>
+</p>
+
+<p>
+  <strong>Teacher:</strong>
+  <%= @exam.teacher_id %>
+</p>
+
+<%= link_to 'Edit', edit_exam_path(@exam) %> |
+<%= link_to 'Back', exams_path %>
