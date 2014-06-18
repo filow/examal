@@ -25,12 +25,16 @@
         <td><%= question.title %></td>
         <td><%= question.description %></td>
         <td><%= question.options %></td>
-        <td><%= question.difficulty %></td>
+        <td><%= diffculty question.difficulty %></td>
         <td><%= question.updated_at.strftime("%Y-%m-%d") %></td>
         <td><%= question.teacher.name %></td>
-        <td><%= link_to '详情', question %></td>
+        <td><%= link_to '详情', question,remote: true %></td>
+
+        <% if @edit_or_delete_right %>
         <td><%= link_to '编辑', edit_question_path(question) %></td>
         <td><%= link_to '删除', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+
       </tr>
     <% end %>
   </tbody>
@@ -38,6 +42,21 @@
 
 <br>
 <br><br>
+
+<!-- 模态对话框 -->
+<div id="detailModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="model-title"></h3>
+  </div>
+  <div id="modal-body" style="padding:20px">
+    <p></p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+  </div>
+</div>
+
 
 
 
@@ -54,7 +73,7 @@ var oTable=$('#datatable').dataTable({
         "aoColumns": [
           null,  
           { "asSorting": [] },
-          { "asSorting": [] },null,null,null,null,null,null  
+          { "asSorting": [] },null,null,null,null,<% if @edit_or_delete_right %>null,null<% end %>  
         ] ,
         'iDisplayLength':25,
         "bStateSave": true

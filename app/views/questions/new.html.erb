@@ -1,15 +1,24 @@
 <%= content_for :css do %>
 <%= render 'css' %>
 <% end %>
+<%= content_for :ext_nav_item do %>
+<li class="current">
+  <a>新建题目</a>
+</li>
+<% end %>
 
 <h3>新建题目</h3>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', questions_path %>
+<%= link_to '<< 返回', questions_path,:class=>"btn" %>
 <%= content_for :js do %>
 <%= render "js" %>
 <script>
 <%= render "activejs" %>
+var answer="<%= @question.answer %>".split(",");
+answer.pop();
+$('#question_answer').selectpicker('val',answer );
+$('#question_answer').selectpicker("refresh");
 </script>
 <% end %>

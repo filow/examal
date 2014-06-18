@@ -1,0 +1,30 @@
+<table class="table">
+  <tr>
+    <td><strong>题目名称:</strong></td>
+    <td><%= @question.title %></td>
+  </tr>
+  <tr>
+    <td><strong>描述:</strong></td>
+    <td><%= @question.description %></td>
+  </tr>
+  <tr>
+    <td><strong>选项:</strong></td>
+    <td><%= @question.options %></td>
+  </tr>
+  <tr>
+    <td><strong>答案:</strong></td>
+    <td><%= @question.answer %></td>
+  </tr>
+  <tr>
+    <td><strong>是否多选:</strong></td>
+    <td><%= @question.multiple %></td>
+  </tr>
+  <tr>
+    <td><strong>难度:</strong></td>
+    <td><%= diffculty @question.difficulty %></td>
+  </tr>
+  <tr>
+    <td><strong>提供者:</strong></td>
+    <td><%= @question.teacher.name %></td>
+  </tr>
+</table>

@@ -1,16 +1,16 @@
 <%= form_for(@question) do |f| %>
-
-  <% if @question.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
-
-      <ul>
-      <% @question.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+<% if @question.errors.any? %>
+  <div class="alert alert-block alert-error">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <h5>您填写的表单有<%= @question.errors.count  %>个错误需要修正：</h5>
+    <ul>
+        <% @question.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+    </ul>
+  </div>
   <% end %>
+
 <table class="span12">
   <tr>
     <td class="span2"><%= f.label :title,"题目" %></td>
@@ -33,12 +33,12 @@
   <tr>
     <td><%= f.label :difficulty,"难度" %></td>
     <td><%= f.number_field :difficulty,min: "1",max:"10" %>
-      <span class="label" id="diff">入门</span>
+      <span class="label" id="diff"></span>
     </td>
   </tr>
 
 </table>
   <div class="actions">
-    <%= f.submit "提交",:class=>"btn btn-success" %>
+    <%= f.submit "提交",:class=>"btn btn-success btn-large" %>
   </div>
 <% end %>

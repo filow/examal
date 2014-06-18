@@ -1,6 +1,6 @@
 class QuestionsController < BackyardController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
-
+  before_action :edit_or_delete_right
   # GET /questions
   # GET /questions.json
   def index
@@ -9,6 +9,7 @@ class QuestionsController < BackyardController
 
   # GET /questions/1
   # GET /questions/1.json
+  # GET /questions/1.js
   def show
   end
 
@@ -23,6 +24,9 @@ class QuestionsController < BackyardController
 
   # GET /questions/1/edit
   def edit
+    unless @edit_or_delete_right
+      redirect_to questions_url,notice:"您没有修改别人编写的题目的权限"
+    end
   end
 
   # POST /questions
@@ -32,7 +36,7 @@ class QuestionsController < BackyardController
 
     respond_to do |format|
       if @question.save
-        format.html { redirect_to @question, notice: 'Question was successfully created.' }
+        format.html { redirect_to new_question_url, notice: "已经成功创建题目：#{@question.title}." }
         format.json { render :show, status: :created, location: @question }
       else
         format.html { render :new }
@@ -44,10 +48,13 @@ class QuestionsController < BackyardController
   # PATCH/PUT /questions/1
   # PATCH/PUT /questions/1.json
   def update
+    unless @edit_or_delete_right
+      redirect_to questions_url,notice:"您没有修改别人编写的题目的权限"
+    end
     respond_to do |format|
       if @question.update(question_params)
-        format.html { redirect_to @question, notice: 'Question was successfully updated.' }
-        format.json { render :show, status: :ok, location: @question }
+        format.html { redirect_to questions_url, notice: "已经成功更新题目：#{@question.title}." }
+        format.json { render :show, status: :ok, location: questions_url }
       else
         format.html { render :edit }
         format.json { render json: @question.errors, status: :unprocessable_entity }
@@ -58,9 +65,12 @@ class QuestionsController < BackyardController
   # DELETE /questions/1
   # DELETE /questions/1.json
   def destroy
+    unless @edit_or_delete_right
+      redirect_to questions_url,notice:"您没有删除别人编写的题目的权限"
+    end
     @question.destroy
     respond_to do |format|
-      format.html { redirect_to questions_url, notice: 'Question was successfully destroyed.' }
+      format.html { redirect_to questions_url, notice: '已成功删除题目.' }
       format.json { head :no_content }
     end
   end
@@ -87,5 +97,8 @@ class QuestionsController < BackyardController
       prm[:multiple]=true if count>0
       
       return prm
+    end
+    def edit_or_delete_right
+        @edit_or_delete_right=@logged_teacher.is_admin? || @logged_teacher.id==question.teacher.id
     end
 end

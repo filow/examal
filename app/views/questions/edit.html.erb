@@ -1,13 +1,17 @@
 <%= content_for :css do %>
 <%= render 'css' %>
 <% end %>
+<%= content_for :ext_nav_item do %>
+<li class="current">
+  <a>编辑”<%= @question.title %>“</a>
+</li>
+<% end %>
 
-<h1>Editing question</h1>
+<h3>编辑”<%= @question.title %>“</h3>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @question %> |
-<%= link_to 'Back', questions_path %>
+<%= link_to '<< 返回', questions_path,:class=>"btn" %>
 <%= content_for :js do %>
 <%= render "js" %>
 <script>
