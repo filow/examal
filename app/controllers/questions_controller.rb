@@ -94,7 +94,7 @@ class QuestionsController < BackyardController
         end
       }
       prm[:answer]=answer
-      prm[:multiple]=true if count>0
+      prm[:multiple]=true if count>1
       
       return prm
     end

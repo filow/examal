@@ -18,6 +18,11 @@ $color_dark:#0e112a;
     -moz-border-radius-topright: $radius;
     border-top-right-radius: $radius;
 }
+@mixin box-shadow($shadow) {
+  -webkit-box-shadow: $shadow;
+     -moz-box-shadow: $shadow;
+          box-shadow: $shadow;
+}
 /********** basic-styles *************/
 body{
     background-color: $color_base_bg;
@@ -430,3 +435,16 @@ a:hover{
 }
 
 .debug_dump{word-break: break-all;}
+
+
+div.opt_box{
+  background-color: #FFF;
+  padding: 10px;
+  @include border-radius(8px);
+  @include box-shadow(0px 0px 9px rgba(0, 0, 0, 0.175));
+  float: left;
+  margin:10px;
+}
+a.delete_box{
+  float: right;
+}

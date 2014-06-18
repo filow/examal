@@ -1,0 +1,11 @@
+
+<div class="opt_box span4">
+  <div>
+  <a class="text-error delete_box" data-id="<%= @question.id %>">删除</a>
+  </div>
+  <h4><%= truncate @question.title,length:16 %></h4>
+  <div>选项：<%= @question.options %></div>
+  <div>答案：<%= @question.answer %></div>
+  <div>难度：<%= diffculty @question.difficulty %></div>
+  <input type="hidden" name="exam[question_list][]" value="<%= @question.id %>">
+</div>

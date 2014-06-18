@@ -57,7 +57,12 @@
   </tr>
   <tr>
     <td>题目列表</td>
-    <td></td>
+    <td>
+      <div id="question_list">
+        <div class="clear" id="question_list_clear"></div>
+      </div>
+
+    </td>
   </tr>
 </table>
 <div class="clear"></div>
@@ -71,19 +76,19 @@
       <th>难度系数</th>
       <th>最近更新时间</th>
       <th>提供者</th>
-      <th></th>
+      <th width="60px"></th>
     </tr>
   </thead>
   <tbody>
     <% @questions.each do |question| %>
       <tr class="<%= cycle("odd", "even") %>">
-        <td><%= question.title %></td>
+        <td><%= truncate question.title,length: 20 %></td>
         <td><%= question.description %></td>
         <td><%= question.options %></td>
         <td><%= diffculty question.difficulty %></td>
         <td><%= question.updated_at.strftime("%Y-%m-%d") %></td>
         <td><%= question.teacher.name %></td>
-        <td><a class="btn btn-small" data-id="<%= question.id %>">添加</a></td>
+        <td><%= link_to "添加",exam_optbox_path(question),remote:true,:class=>"btn btn-small","data-id"=> question.id %></td>
       </tr>
     <% end %>
   </tbody>

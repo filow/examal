@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :exams
-
+  get "exams/optbox/:id"=>'exams#optbox',as:"exam_optbox"
   resources :questions
 
   resources :students

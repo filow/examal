@@ -1,0 +1,8 @@
+$('#question_list').append("<%= escape_javascript(render('optbox')) %>");
+$(".table a[data-id=<%=@question.id %>]").attr("disabled","disabled").html("已添加");
+
+$("a.delete_box").click(function(){
+	var id=$(this).attr("data-id");
+	$(".table a[data-id="+id+"]").removeAttr("disabled").html("添加");
+	$(this).parent().parent().remove();
+});

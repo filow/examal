@@ -18,6 +18,12 @@ class ExamsController < ApplicationController
     
   end
 
+  def optbox
+    @question=Question.find_by_id(params[:id])
+    respond_to do |format|
+      format.js
+    end
+  end
   # GET /exams/1/edit
   def edit
   end
@@ -72,6 +78,6 @@ class ExamsController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def exam_params
-      params.require(:exam).permit(:name, :description, :valid_from, :valid_to, :timespan, :teacher_id)
+      params.require(:exam).permit(:name, :description, :valid_from, :valid_to, :timespan, :teacher_id,question_list: [])
     end
 end
