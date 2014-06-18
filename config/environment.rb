@@ -1,7 +1,7 @@
 # Load the Rails application.
 require File.expand_path('../application', __FILE__)
 SITE_NAME="在线考试系统"
-
+START_TIME=Time.now
 NAVS=[
 	{icon: "home",text:"首  页", controller: "admin",children: [
 		{icon: "dashboard", text: "仪表盘", action: "index"}

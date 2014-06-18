@@ -1,2 +1,30 @@
-<h1>Admin#index</h1>
-<p>Find me in app/views/admin/index.html.erb</p>
+<h3>欢迎您，<%= @logged_teacher.name %></h3>
+<p>点击左侧可以对系统进行管理。包括学生管理/教师管理（非管理员只能查看和修改自己的信息）/题库管理/考试管理。祝您使用愉快！</p>
+<div class="well">
+	<table class="table">
+		<tr>
+			<td>系统启动时间</td>
+			<td><%= START_TIME %></td>
+		</tr>
+		<tr>
+			<td>系统运行时间</td>
+			<td><%= time_span (Time.now-START_TIME) %></td>
+		</tr>
+		<tr>
+			<td>当前系统学生数量</td>
+			<td><%= Student.count %></td>
+		</tr>
+		<tr>
+			<td>当前系统教师数量</td>
+			<td><%= Teacher.count %></td>
+		</tr>
+		<tr>
+			<td>题库题目总量</td>
+			<td><%= Question.count %></td>
+		</tr>
+		<tr>
+			<td>考试数量</td>
+			<td><%= Exam.count %></td>
+		</tr>
+	</table>
+</div>
