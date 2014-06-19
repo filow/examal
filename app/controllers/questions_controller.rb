@@ -89,7 +89,7 @@ class QuestionsController < BackyardController
       count=0
       prm[:answer].each{ |x|
         unless x.empty?
-          answer+=x.to_s+","
+          answer+=x.to_s.strip+","
           count+=1
         end
       }
