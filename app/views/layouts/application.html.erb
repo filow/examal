@@ -21,7 +21,7 @@
 		<div class="pull-right userinfo" id="nav-bar">
             <button class="btn">欢迎您：<%= session[:teacher_name] %></button>
             <%= link_to "账户管理",edit_teacher_path(session[:teacher_id]),:class=>"btn" %>
-            <%= link_to "回到前台","#",:class=>"btn" %>
+            <%= link_to "回到前台",index_path,:class=>"btn" %>
             <%= link_to "退出登录",logout_path,method: :delete,:class=>"btn btn-warning" %>
 		</div>
 	</div>

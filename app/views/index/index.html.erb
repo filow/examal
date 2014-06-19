@@ -1,0 +1,76 @@
+<%= content_for :css do %>
+<%= stylesheet_link_tag    'login_index', media: 'all', 'data-turbolinks-track' => true %>
+<% end %>
+<div class="logo">
+	<%= image_tag("logo_dark.png",id:"logo") %>
+</div>
+<% unless notice.nil? %>
+<div class="alert alert-danger" style="text-align:center">
+	<%= notice %>
+</div>
+<% end %>
+<div class="login-box">
+	<div class="fields">
+	<%= form_tag do %>
+		<div class="username_field">
+			<%= text_field_tag :username ,@username,:class=>"form-control",placeholder:"用户名"%>
+		</div>
+		<div class="password_field">
+			<%= password_field_tag :password ,"",:class=>"form-control",placeholder:"密码"%>
+		</div>
+		<div class="login_button">
+			<%= submit_tag "登 录",:class=>"btn btn-primary" %>
+		</div>
+		<div class="login_button">
+			<a class="btn btn-success"  data-toggle="modal" data-target="#myModal">注 册</a>
+		</div>
+	<% end %>
+	</div>
+</div>
+<div class="teacher"><%= link_to ">>教师登录",login_url %></div>
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">注册用户</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_tag("") do %>
+        <table class="table">
+          <tr>
+            <td>学号</td>
+            <td><%= text_field_tag :stuid,"",:class=>"form-control" %></td>
+          </tr>
+        	<tr>
+        		<td>姓名（用户名）</td>
+        		<td><%= text_field_tag :name,"",:class=>"form-control" %></td>
+        	</tr>
+        	<tr>
+        		<td>密码</td>
+        		<td><%= text_field_tag :password,"",:class=>"form-control" %></td>
+        	</tr>
+          <tr>
+            <td>性别</td>
+            <td><%= select_tag :sex,options_for_select([["男",true],["女",false]]),:class=>"form-control",include_blank:true  %></td>
+          </tr>
+        	<tr>
+            <td>专业</td>
+            <td><%= text_field_tag :profession,"",:class=>"form-control" %></td>
+          </tr>
+          <tr>
+            <td>年级（只写年份，例如12）</td>
+            <td><%= number_field_tag :grade,"",:class=>"form-control" %></td>
+          </tr>
+          <tr>
+            <td colspan="2"><%= submit_tag "注  册",:class=>"btn btn-primary",remote:true %></td>
+          </tr>
+        </table>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

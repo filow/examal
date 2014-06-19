@@ -1,0 +1,38 @@
+@mixin center(){
+	margin-left: auto;
+	margin-right: auto;
+}
+.logo{
+	margin: 100px auto 10px auto;
+	width: 400px;
+}
+.login-box{
+	background-image: url("login_box.png");
+	width: 350px;
+	height: 328px;
+	@include center;
+	.fields{
+		padding-top: 101px;
+		padding-left: 56px;
+		padding-right: 53px;
+	}
+	.username_field,.password_field{
+		width: 240px;
+		padding-left: 36px;
+		input{
+			height: 40px;
+		}
+	}
+}
+.login_button{
+	margin-top: 13px;
+	input,a{
+		width: 100%;
+	}
+}
+.teacher{
+	width: 305px;
+	@include center;
+	text-align: right;
+	margin-top: -18px;
+} 

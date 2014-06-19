@@ -1,0 +1,1 @@
+Rails.application.config.assets.precompile += %w( index.css login_index.css panel.css )

@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  get 'panel/index'
+
+  get 'panel/taken'
+
+  get 'panel/untaken'
+
+  get 'panel/info'
+
+  get '/' => 'index#index',as:"index"
+
+  post '/' =>'index#new'
+  delete '/exit' => 'index#destroy'
+
+
   resources :exams
   get "exams/optbox/:id"=>'exams#optbox',as:"exam_optbox"
   resources :questions

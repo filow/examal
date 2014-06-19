@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Examal-在线考试系统</title>
+	<!-- 让ie浏览器使用最新的渲染引擎 -->
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<%= stylesheet_link_tag    'index', media: 'all', 'data-turbolinks-track' => true %>
+	<%= yield :css %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  
+	<%= csrf_meta_tags %>
+</head>
+<style>
+
+</style>
+<body>
+<%= yield %>
+
+</body>
+<%= yield :js %>
+</html>

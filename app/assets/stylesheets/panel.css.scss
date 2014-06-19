@@ -1,0 +1,19 @@
+// Place all the styles related to the panel controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.panels{
+	margin-left: 5%;
+	width: 90%;
+}
+.panel-header{
+	height: 88px;
+	background-color: #14425C;
+
+}
+.aside{width: 25%;margin-top: 10px;float: left;}
+.content{width: 74%; float: right;margin-top: 10px;background-color: #FFF;margin-left: 1%;padding:  0px 15px;}
+#logo{
+	width: 300px;
+	margin-top: 19px;
+	margin-left: 15px;
+}
