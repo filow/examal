@@ -4,6 +4,7 @@ class IndexController < ApplicationController
 		redirect_to panel_index_url
 	end
   	@username=""
+  	@student = Student.new()
 
   end
 
@@ -23,6 +24,16 @@ class IndexController < ApplicationController
     end
   end
 
+  def create
+  	@student = Student.new(reg_param)
+  	respond_to do |format|
+      if @student.save
+        format.html { redirect_to index_url, notice: "已成功创建学生账户：#{@student.name}. "}
+      else
+        format.html { render :create }
+      end
+    end
+  end
   def destroy
   	session[:student_id]=nil
 	redirect_to index_url
@@ -32,5 +43,8 @@ class IndexController < ApplicationController
 
   def login_param
   	params.permit(:username,:password)
+  end
+  def reg_param
+  	params.permit(:stuid, :name, :password, :sex, :profession, :grade)
   end
 end

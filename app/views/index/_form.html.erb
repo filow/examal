@@ -1,0 +1,41 @@
+<% if @student.errors.any? %>
+  <div class="alert alert-danger">
+    <h5>您填写的表单有<%= @student.errors.count %>个错误需要修正：</h5>
+    <ul>
+        <% @student.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_tag(index_create_path) do %>
+    <table class="table">
+      <tr>
+        <td>学号</td>
+        <td><%= text_field_tag :stuid,@student.stuid,:class=>"form-control" %></td>
+      </tr>
+    	<tr>
+    		<td>姓名（用户名）</td>
+    		<td><%= text_field_tag :name,@student.name,:class=>"form-control" %></td>
+    	</tr>
+    	<tr>
+    		<td>密码</td>
+    		<td><%= text_field_tag :password,"",:class=>"form-control" %></td>
+    	</tr>
+      <tr>
+        <td>性别</td>
+        <td><%= select_tag :sex,options_for_select([["男",true],["女",false]],@student.sex),:class=>"form-control",include_blank:true  %></td>
+      </tr>
+    	<tr>
+        <td>专业</td>
+        <td><%= text_field_tag :profession,@student.profession,:class=>"form-control" %></td>
+      </tr>
+      <tr>
+        <td>年级（只写年份，例如12）</td>
+        <td><%= number_field_tag :grade,@student.grade,:class=>"form-control" %></td>
+      </tr>
+      <tr>
+        <td colspan="2"><%= submit_tag "提  交",:class=>"btn btn-primary",remote:true %></td>
+      </tr>
+    </table>
+<% end %>

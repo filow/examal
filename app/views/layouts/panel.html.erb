@@ -17,10 +17,20 @@
 	</div>
 	<div class="aside">
 		<div class="list-group">
-		<%= link_to content_tag(:i,"",:class=>"glyphicon glyphicon-dashboard")+" 概况",panel_index_url,:class=>"list-group-item active" %>
-		<%= link_to content_tag(:i,"",:class=>"glyphicon glyphicon-check")+" 已参加的考试",panel_index_url,:class=>"list-group-item" %>
-		<%= link_to content_tag(:i,"",:class=>"glyphicon glyphicon-refresh")+" 未参加的考试",panel_index_url,:class=>"list-group-item" %>
-		<%= link_to content_tag(:i,"",:class=>"glyphicon glyphicon-user")+" 修改个人信息",panel_index_url,:class=>"list-group-item" %>
+		<% navs=[
+			{name:"概况",icon:"dashboard",action:"index"},
+			{name:"已参加的考试",icon:"check",action:"taken"},
+			{name:"未参加的考试",icon:"refresh",action:"untaken"},
+			{name:"修改个人信息",icon:"user",action:"info"},
+		]
+		%>
+		<% navs.each do |nav| %>
+			<% 
+			cls=""
+			cls="active" if nav[:action]==request.filtered_parameters["action"]
+			   %>
+			<%= link_to content_tag(:i,"",:class=>"glyphicon glyphicon-#{nav[:icon]}")+" #{nav[:name]}",{controller:"panel",action:nav[:action]},:class=>"list-group-item #{cls}" %>
+		<% end %>
 		<%= link_to content_tag(:i,"",:class=>"glyphicon glyphicon-share")+" 退出",exit_url,:class=>"list-group-item",method: :delete %>
 		</div>
 	</div>

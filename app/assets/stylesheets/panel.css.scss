@@ -1,6 +1,27 @@
 // Place all the styles related to the panel controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@mixin border-radius($radius: 5px){
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    -o-border-radius: $radius;
+    border-radius: $radius;
+}
+@mixin border-top-radius($radius: 5px){
+    -webkit-border-top-left-radius: $radius;
+    -moz-border-radius-topleft: $radius;
+    border-top-left-radius: $radius;
+    -webkit-border-top-right-radius: $radius;
+    -moz-border-radius-topright: $radius;
+    border-top-right-radius: $radius;
+}
+@mixin box-shadow($shadow) {
+  -webkit-box-shadow: $shadow;
+     -moz-box-shadow: $shadow;
+          box-shadow: $shadow;
+}
 .panels{
 	margin-left: 5%;
 	width: 90%;
@@ -16,4 +37,17 @@
 	width: 300px;
 	margin-top: 19px;
 	margin-left: 15px;
+}
+
+div.opt_box{
+  background-color: #FFF;
+  padding: 10px;
+  @include border-radius(8px);
+  @include box-shadow(0px 0px 9px rgba(0, 0, 0, 0.175));
+  float: left;
+  margin:10px;
+  margin-left: 40px;
+  h4{
+    margin-top: 0px;
+  }
 }

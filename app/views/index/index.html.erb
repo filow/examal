@@ -27,7 +27,7 @@
 	<% end %>
 	</div>
 </div>
-<div class="teacher"><%= link_to ">>教师登录",login_url %></div>
+<div class="teacher"><%= link_to ">>教师登录",login_path %></div>
 <div class="modal fade" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -36,37 +36,7 @@
         <h4 class="modal-title">注册用户</h4>
       </div>
       <div class="modal-body">
-        <%= form_tag("") do %>
-        <table class="table">
-          <tr>
-            <td>学号</td>
-            <td><%= text_field_tag :stuid,"",:class=>"form-control" %></td>
-          </tr>
-        	<tr>
-        		<td>姓名（用户名）</td>
-        		<td><%= text_field_tag :name,"",:class=>"form-control" %></td>
-        	</tr>
-        	<tr>
-        		<td>密码</td>
-        		<td><%= text_field_tag :password,"",:class=>"form-control" %></td>
-        	</tr>
-          <tr>
-            <td>性别</td>
-            <td><%= select_tag :sex,options_for_select([["男",true],["女",false]]),:class=>"form-control",include_blank:true  %></td>
-          </tr>
-        	<tr>
-            <td>专业</td>
-            <td><%= text_field_tag :profession,"",:class=>"form-control" %></td>
-          </tr>
-          <tr>
-            <td>年级（只写年份，例如12）</td>
-            <td><%= number_field_tag :grade,"",:class=>"form-control" %></td>
-          </tr>
-          <tr>
-            <td colspan="2"><%= submit_tag "注  册",:class=>"btn btn-primary",remote:true %></td>
-          </tr>
-        </table>
-        <% end %>
+        <%= render "form" %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'panel/index'
 
   get 'panel/taken'
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
   get 'panel/info'
 
   get '/' => 'index#index',as:"index"
+  post 'index/create'
 
   post '/' =>'index#new'
   delete '/exit' => 'index#destroy'

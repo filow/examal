@@ -1,0 +1,9 @@
+<%= content_for :css do %>
+<%= stylesheet_link_tag    'login_index', media: 'all', 'data-turbolinks-track' => true %>
+<% end %>
+<div class="logo">
+	<%= image_tag("logo_dark.png",id:"logo") %>
+</div>
+<div class="form_box">
+<%= render "form" %>
+</div>

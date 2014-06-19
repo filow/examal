@@ -9,5 +9,6 @@ class PanelController < FrontController
   end
 
   def info
+  	@student=@logged_student
   end
 end
