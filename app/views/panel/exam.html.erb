@@ -1,0 +1,42 @@
+<div class="page-header">
+  <h2><%= @exam.name %></h2>
+</div>
+<%= form_tag do %>
+<table class="table">
+ <% count=0 
+ 	serize=[]
+ 	("A".."Z").each{|x| serize<<x}
+ %>
+	<% @exam.questions.each do |question| %>
+	<tr>
+		<td rowspan="2" width="60px"><%= count+1 %></td>
+		<td><%= question.title %></td>
+	</tr>
+
+	<tr>
+		<td>
+			<% options=question.options.split(",")
+				index=-1
+			 %>
+			 	<% options.each do |option| %>
+					<div>
+						<label>
+						<% if question.multiple? %>
+							<%= check_box_tag "answer[#{count}][]",option %>
+						<% else %>
+							<%= radio_button_tag "answer[#{count}]",option %>
+							
+						<% end %>
+						<%= "#{serize[index+=1]}： #{option}" %>
+						</label>
+					</div>
+					
+			 	<% end %>
+
+		</td>
+	</tr>
+	<% count+=1 %>
+	<% end %>
+</table>
+<%= submit_tag "交卷",:class=>"btn btn-primary btn-large" %>
+<% end %>

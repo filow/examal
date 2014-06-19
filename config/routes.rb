@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'panel/exam/:id'=>'panel#exam',as:"panel_exam"
+
   get 'panel/index'
 
   get 'panel/taken'

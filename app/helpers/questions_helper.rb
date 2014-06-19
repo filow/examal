@@ -1,7 +1,7 @@
 module QuestionsHelper
 	def difficulty_level(number)
 		if number.in?(1..2)
-			content_tag :span,number.to_s+"-入门",:class=>"label"
+			content_tag :span,number.to_s+"-入门",:class=>"label label-default"
 		elsif number.in?(2..4)
 			content_tag :span,number.to_s+"-简单",:class=>"label label-success"
 		elsif number.in?(4..6)
@@ -11,7 +11,7 @@ module QuestionsHelper
 		elsif number.in?(6..10)
 			content_tag :span,number.to_s+"-困难",:class=>"label label-important"
 		else
-			content_tag :span,number.to_s,:class=>"label"
+			content_tag :span,number.to_s,:class=>"label label-default"
 		end
 	end
 

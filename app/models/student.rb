@@ -9,7 +9,8 @@ class Student < ActiveRecord::Base
 	validates_length_of :password,minimum: 6,message: "至少要有6位"
 
 	validate :password_must_be_present
-
+	has_many :contests
+	has_many :exams,through: :contests
 	def self.auth(name,password)
 		if student=find_by_name(name)
 			if student.hashed_password == encrypt_password(password,name)

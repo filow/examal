@@ -35,6 +35,11 @@
 		</div>
 	</div>
 	<div class="content">
+	<% unless notice.nil? %>
+        <div class="alert alert-info">
+          <%= notice %>
+        </div>
+    <% end %>
 	<%= yield %>
 		
 	</div>
