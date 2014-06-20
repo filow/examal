@@ -1,7 +1,7 @@
 module PanelHelper
 	def mark_tag(number)
 		if number.in?(0..59)
-			content_tag :span,number.to_s+"%-不及格",:class=>"label label-important"
+			content_tag :span,number.to_s+"%-不及格",:class=>"label label-danger"
 		elsif number.in?(60..79)
 			content_tag :span,number.to_s+"%-还行",:class=>"label label-warning"
 		elsif number.in?(80..89)
