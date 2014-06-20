@@ -1,2 +1,29 @@
-<h1>Panel#taken</h1>
-<p>Find me in app/views/panel/taken.html.erb</p>
+<div class="page-header">
+  <h2>已参加的考试 </h2>
+</div>
+<table class="table table-striped">
+	<thead>
+		<th>考试名称</th>
+		<th>简介</th>
+		<th>试题数量</th>
+		<th>平均难度</th>
+		<th>提供者</th>
+		<th></th>
+	</thead>
+	<tbody>
+		<% 	@exams.each do |exam| %>
+		<tr>
+			<td><%= exam.name %></td>
+			<td><%= exam.description %></td>
+			<td><%= exam.questions.size %></td>
+			<td><%= difficulty_level exam.average_difficulty %></td>
+			<td><%= exam.teacher.name %></td>
+			<td>
+			<% contest=Contest.where(exam_id:exam.id,student_id:@logged_student.id).first
+			%>
+			<%= mark_tag contest.mark %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

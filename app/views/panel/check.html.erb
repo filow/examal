@@ -1,0 +1,30 @@
+
+<div class="page-header">
+  <h2>您的分数是：<%= @mark %>（<%= "#{@right}/#{@count}" %>）</h2>
+</div>
+<h4>以下是您做错的题目（共<%= @fault %>题）</h4>
+<table class="table">
+	<% @fault_questions.each do |item| %>
+	<tr>
+		<td  class="danger"><%= item[:question].title %></td>
+	</tr>
+	<tr>
+		<td>正确答案：<%= item[:question].answer %></td>
+	</tr>
+	<tr>
+		<td><p class="text-danger">您的答案：<%= item[:answer].join(",") %></p></td>
+	</tr>
+	<% end %>
+</table>
+<h4>以下是您的正确题目（共<%= @right %>题）</h4>
+<table class="table">
+	<% @right_questions.each do |item| %>
+	<tr>
+		<td  class="success"><%= item[:question].title %></td>
+	</tr>
+	<tr>
+		<td><p class="text-success">正确答案：<%= item[:question].answer %></p></td>
+	</tr>
+	<% end %>
+</table>
+<%= link_to "查看已参加的考试",panel_taken_url,:class=>"btn btn-default" %>

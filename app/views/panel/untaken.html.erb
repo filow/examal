@@ -21,12 +21,8 @@
 			<td><%= difficulty_level exam.average_difficulty %></td>
 			<td><%= exam.teacher.name %></td>
 			<td>
-			<% if student=exam.students.find_by_id(@logged_student.id) %>
-				<% begin %>
-					<%= mark_tag student.contests[0].mark %> 
-				<% rescue Exception => e %>
-					
-				<% end %>
+			<% if contest=Contest.where(exam_id:exam.id,student_id:@logged_student.id).first %>
+				<%= mark_tag contest.mark %> 
 			<% else %>
 				<%= link_to "开始考试",panel_exam_path(exam),:class=>"btn btn-primary" %>
 			<% end %>

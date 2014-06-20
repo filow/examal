@@ -1,3 +1,67 @@
 <div class="page-header">
   <h1>概况 <small>您的考试情况</small></h1>
 </div>
+<h4>您目前为止参加了 <%= @exams.size %> 门考试，平均分为：<%= @average/@exams.size %></h4>
+<div class="page-header">
+  <h3>已参加的考试 </h3>
+</div>
+<table class="table table-striped">
+	<thead>
+		<th>考试名称</th>
+		<th>简介</th>
+		<th>试题数量</th>
+		<th>平均难度</th>
+		<th>提供者</th>
+		<th></th>
+	</thead>
+	<tbody>
+		<% 	@exams.each do |exam| %>
+		<tr>
+			<td><%= exam.name %></td>
+			<td><%= exam.description %></td>
+			<td><%= exam.questions.size %></td>
+			<td><%= difficulty_level exam.average_difficulty %></td>
+			<td><%= exam.teacher.name %></td>
+			<td>
+			<% contest=Contest.where(exam_id:exam.id,student_id:@logged_student.id).first
+			%>
+			<%= mark_tag contest.mark %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<div class="page-header">
+  <h3>正在进行的考试 </h3>
+</div>
+<% unless @current.empty? %>
+
+<table class="table table-striped">
+	<thead>
+		<th>考试名称</th>
+		<th>简介</th>
+		<th>试题数量</th>
+		<th>平均难度</th>
+		<th>提供者</th>
+		<th></th>
+	</thead>
+	<tbody>
+		<% 	@current.each do |exam| %>
+		<% unless Contest.where(exam_id:exam.id,student_id:@logged_student.id).first %>
+		<tr>
+			<td><%= exam.name %></td>
+			<td><%= exam.description %></td>
+			<td><%= exam.questions.size %></td>
+			<td><%= difficulty_level exam.average_difficulty %></td>
+			<td><%= exam.teacher.name %></td>
+			<td>
+				<%= link_to "开始考试",panel_exam_path(exam),:class=>"btn btn-primary" %>
+			</td>
+		</tr>
+		<% end %>
+		<% end %>
+	</tbody>
+</table>
+<% else %>
+目前没有正在进行的考试
+<% end %>

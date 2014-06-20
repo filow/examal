@@ -10,6 +10,7 @@ class StudentsController < BackyardController
   # GET /students/1
   # GET /students/1.json
   def show
+    @exams=Student.find_by_id(params[:id]).exams
   end
 
   # GET /students/new

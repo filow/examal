@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   get 'panel/exam/:id'=>'panel#exam',as:"panel_exam"
-
+  post 'panel/exam/:id'=>'panel#check'
   get 'panel/index'
 
   get 'panel/taken'
