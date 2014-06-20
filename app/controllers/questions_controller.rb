@@ -99,6 +99,6 @@ class QuestionsController < BackyardController
       return prm
     end
     def edit_or_delete_right
-        @edit_or_delete_right=@logged_teacher.is_admin? || @logged_teacher.id==question.teacher.id
+        @edit_or_delete_right=@logged_teacher.is_admin? || @logged_teacher.id==@question.teacher.id
     end
 end
