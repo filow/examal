@@ -1,6 +1,6 @@
 class QuestionsController < BackyardController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
-  before_action :edit_or_delete_right
+  before_action :edit_or_delete_right,only:[:edit,:update, :destroy]
   # GET /questions
   # GET /questions.json
   def index
