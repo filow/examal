@@ -1,7 +1,7 @@
 class ExamsController < BackyardController
   before_action :set_exam, only: [:show, :edit, :update, :destroy]
   before_action :set_question,only:[:new,:edit,:create,:update]
-  before_action :edit_or_delete_right
+  before_action :edit_or_delete_right,only:[:edit,:create,:update]
   # GET /exams
   # GET /exams.json
   def index
@@ -115,6 +115,6 @@ class ExamsController < BackyardController
     end
 
     def edit_or_delete_right
-        @edit_or_delete_right=@logged_teacher.is_admin? || @logged_teacher.id==question.teacher.id
+        @edit_or_delete_right=@logged_teacher.is_admin? || @logged_teacher.id==@question.teacher.id
     end
 end
