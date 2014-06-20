@@ -70,7 +70,7 @@ class PanelController < FrontController
   			end
   		else
   			@fault+=1
-  			@fault_questions<<{question: question ,answer: ""}
+  			@fault_questions<<{question: question ,answer: [""]}
   		end
   	end
   	@mark=@right*100/@count

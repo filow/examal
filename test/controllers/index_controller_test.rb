@@ -7,13 +7,14 @@ class IndexControllerTest < ActionController::TestCase
   end
 
   test "should get new" do
-    get :new
-    assert_response :success
+    student=students(:stu1)
+    post :new,{username:students.name,password:"111"}
+    assert_redirected_to panel_index_url
   end
 
   test "should get destroy" do
-    get :destroy
-    assert_response :success
+    delete :destroy
+    assert_redirected_to index_url
   end
 
 end

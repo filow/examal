@@ -2,6 +2,7 @@ require 'test_helper'
 
 class ExamsControllerTest < ActionController::TestCase
   setup do
+    login_as :admin if defined? session
     @exam = exams(:one)
   end
 

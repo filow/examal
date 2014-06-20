@@ -34,6 +34,6 @@ production:
   reconnect: false
   database: examal
   pool: 5
-  username: root
-  password: root
+  username: examal
+  password: ALIexamal
   host: localhost

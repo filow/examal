@@ -13,7 +13,7 @@
 	<div class="fields">
 	<%= form_tag do %>
 		<div class="username_field">
-			<%= text_field_tag :username ,@username,:class=>"form-control",placeholder:"用户名"%>
+			<%= text_field_tag :username ,@username,:class=>"form-control",placeholder:"用户名",autofocus: true %>
 		</div>
 		<div class="password_field">
 			<%= password_field_tag :password ,"",:class=>"form-control",placeholder:"密码"%>
