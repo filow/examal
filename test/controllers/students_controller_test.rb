@@ -4,7 +4,7 @@ class StudentsControllerTest < ActionController::TestCase
   setup do
     @student = students(:stu1)
     login_as :admin if defined? session
-    @new_attrs={grade: "12", password: "111", name: "hihi", profession: "", sex: "true", stuid:"125213912"}
+    @new_attrs={grade: "12", password: "111111", name: "hihi", profession: "", sex: "true", stuid:"125213912"}
   end
 
   test "访问学生列表页面" do
@@ -37,7 +37,7 @@ class StudentsControllerTest < ActionController::TestCase
   end
 
   test "更新学生信息页面" do
-    patch :update, id: @student, student: { grade: @student.grade, hashed_password: @student.hashed_password, name: @student.name, profession: @student.profession, sex: @student.sex, stuid: @student.stuid }
+    patch :update, id: @student, student: @new_attrs
     assert_redirected_to student_path(assigns(:student))
   end
 
