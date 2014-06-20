@@ -1,7 +1,7 @@
 <div class="page-header">
   <h1>概况 <small>您的考试情况</small></h1>
 </div>
-<h4>您目前为止参加了 <%= @exams.size %> 门考试，平均分为：<%= @average/@exams.size %></h4>
+<h4>您目前为止参加了 <%= @exams.size %> 门考试，平均分为：<%= @average/@exams.size if @exams.size > 0 %></h4>
 <div class="page-header">
   <h3>已参加的考试 </h3>
 </div>
