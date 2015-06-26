@@ -11,7 +11,7 @@
  * file per style scope.
  *
  *= require_self
- *= require dark_ui/uilib.css
+ *= require uilib.css
  *= require common
  *= require font-awesome
  */
