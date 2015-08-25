@@ -100,7 +100,7 @@
         <td><%= question.options %></td>
         <td><%= difficulty_level question.difficulty %></td>
         <td><%= question.updated_at.strftime("%Y-%m-%d") %></td>
-        <td><%= question.teacher.name %></td>
+        <td><%= question.teacher.name if question.teacher %></td>
         <td>
         <% if question.exams.where(id:@exam.id).count>0 %>
         <%= link_to "已添加",exam_optbox_path(question),remote:true,:class=>"btn btn-small","data-id"=> question.id,disabled:true %>

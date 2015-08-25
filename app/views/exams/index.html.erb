@@ -27,7 +27,7 @@
         <td><%= exam.timespan %>分钟</td>
         <td><%= exam.questions.size %></td>
         <td><%= difficulty_level exam.average_difficulty %></td>
-        <td><%= exam.teacher.name %></td>
+        <td><%= exam.teacher.name if exam.teacher %></td>
         <td><%= link_to '详情', exam %></td>
         <%= admin_and_self_only(exam.teacher_id) do %>
         <td><%= link_to '编辑', edit_exam_path(exam) %></td>

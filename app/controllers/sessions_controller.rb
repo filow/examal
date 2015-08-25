@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
 	layout nothing: true
 	# get /login
 	def new
-		unless session[:teacher_id].nil?
+		if session[:teacher_id]
 			redirect_to admin_url
 		end
 	end
