@@ -1,28 +1,5 @@
-== README
+== 在线考试系统
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 管理员账户生成
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+可以使用`rake db:seed`来生成管理员账户，不过在数据库内teachers表内已经有管理员账户时无效。如果真的有这个需求可以更改一下db/seeds.rb
